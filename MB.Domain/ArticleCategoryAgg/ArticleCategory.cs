@@ -1,4 +1,5 @@
-﻿using MB.Domain.ArticleCategoryAgg.Services;
+﻿using MB.Domain.ArticleAgg;
+using MB.Domain.ArticleCategoryAgg.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace MB.Domain.ArticleCategoryAgg
         public string Title { get; private set; }
         public bool IsDeleted { get; private set; }
         public DateTime CreationDate { get; private set; }
+        public IEnumerable<Article> Articles { get; private set; }
         public ArticleCategory(string title,IArticleCategoryValidatorService validatorService)
         {
             CheckTitleIsNullOrEmpty(title);
@@ -20,6 +22,7 @@ namespace MB.Domain.ArticleCategoryAgg
             Title = title;
             CreationDate = DateTime.Now;
             IsDeleted = false;
+            Articles = new List<Article>();
         }
 
         private static void CheckTitleIsNullOrEmpty(string title)
