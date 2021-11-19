@@ -1,4 +1,9 @@
-﻿using MB.Domain.ArticleAgg;
+﻿using MB.Application.Contracts.Article;
+using MB.Domain.ArticleAgg;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 
 namespace MB.Infrastructure.EFCore.Repository
 {
@@ -11,5 +16,16 @@ namespace MB.Infrastructure.EFCore.Repository
             _masterBloggerContext = masterBloggerContext;
         }
 
+        public List<ArticleViewModel> GetList()
+        {
+            return _masterBloggerContext.Articles.Include(x => x.ArticleCategory).Select(x => new ArticleViewModel
+            {
+                Id = x.Id,
+                Title = x.Title,
+                ArticleCategory = x.ArticleCategory.Title,
+                IsDeleted = x.IsDeleted,
+                CreationDate = x.CreationDate.ToString(CultureInfo.InvariantCulture)
+            }).ToList();
+        }
     }
 }

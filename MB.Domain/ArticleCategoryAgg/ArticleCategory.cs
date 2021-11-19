@@ -2,9 +2,6 @@
 using MB.Domain.ArticleCategoryAgg.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MB.Domain.ArticleCategoryAgg
 {
@@ -23,6 +20,10 @@ namespace MB.Domain.ArticleCategoryAgg
             CreationDate = DateTime.Now;
             IsDeleted = false;
             Articles = new List<Article>();
+        }
+
+        protected ArticleCategory()
+        {
         }
 
         private static void CheckTitleIsNullOrEmpty(string title)
