@@ -2,6 +2,7 @@
 using MB.Domain.ArticleCategoryAgg.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MB.Domain.ArticleCategoryAgg
 {
@@ -11,6 +12,7 @@ namespace MB.Domain.ArticleCategoryAgg
         public string Title { get; private set; }
         public bool IsDeleted { get; private set; }
         public DateTime CreationDate { get; private set; }
+        [NotMapped]
         public IEnumerable<Article> Articles { get; private set; }
         public ArticleCategory(string title,IArticleCategoryValidatorService validatorService)
         {
