@@ -19,7 +19,12 @@ namespace MB.Infrastructure.EFCore.Repository
         public void CreateAndSave(Article article)
         {
             _masterBloggerContext.Articles.Add(article);
-            _masterBloggerContext.SaveChanges();
+            Save();
+        }
+
+        public Article GetBy(long id)
+        {
+            return _masterBloggerContext.Articles.FirstOrDefault(x => x.Id == id);
         }
 
         public List<ArticleViewModel> GetList()
@@ -32,6 +37,11 @@ namespace MB.Infrastructure.EFCore.Repository
                 IsDeleted = x.IsDeleted,
                 CreationDate = x.CreationDate.ToString(CultureInfo.InvariantCulture)
             }).ToList();
+        }
+
+        public void Save()
+        {
+            _masterBloggerContext.SaveChanges();
         }
     }
 }
