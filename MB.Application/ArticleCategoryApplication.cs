@@ -29,7 +29,7 @@ namespace MB.Application
             return new RenameArticleCategory
             {
                 Title = articleCategory.Title,
-                Id = articleCategory.Id,
+                Id = articleCategory.ArticleCategoryId,
             };
         }
 
@@ -42,7 +42,7 @@ namespace MB.Application
                 result.Add(new ArticleCategoryViewModel
                 {
 
-                    Id = item.Id,
+                    Id = item.ArticleCategoryId,
                     Title = item.Title,
                     CreationDate = item.CreationDate.ToString(CultureInfo.InvariantCulture),
                     IsDeleted = item.IsDeleted

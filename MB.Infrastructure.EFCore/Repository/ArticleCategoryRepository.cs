@@ -24,12 +24,12 @@ namespace MB.Infrastructure.EFCore.Repository
 
         public List<ArticleCategory> GetAll()
         {
-            return _context.ArticleCategories.OrderByDescending(x => x.Id).ToList();
+            return _context.ArticleCategories.OrderByDescending(x => x.ArticleCategoryId).ToList();
         }
 
         public ArticleCategory GetBy(long id)
         {
-            return _context.ArticleCategories.FirstOrDefault(x => x.Id == id);
+            return _context.ArticleCategories.FirstOrDefault(x => x.ArticleCategoryId == id);
         }
 
         public void Save()

@@ -10,7 +10,7 @@ namespace MB.Infrastructure.EFCore.Mappings
         {
             builder.ToTable("ArticleCategories");
 
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => x.ArticleCategoryId);
             builder.Property(x => x.Title);
             builder.Property(x => x.CreationDate);
             builder.Property(x => x.IsDeleted);

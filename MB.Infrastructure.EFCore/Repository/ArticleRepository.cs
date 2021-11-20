@@ -16,6 +16,12 @@ namespace MB.Infrastructure.EFCore.Repository
             _masterBloggerContext = masterBloggerContext;
         }
 
+        public void CreateAndSave(Article article)
+        {
+            _masterBloggerContext.Articles.Add(article);
+            _masterBloggerContext.SaveChanges();
+        }
+
         public List<ArticleViewModel> GetList()
         {
             return _masterBloggerContext.Articles.Include(x => x.ArticleCategory).Select(x => new ArticleViewModel
