@@ -39,6 +39,11 @@ namespace MB.Infrastructure.EFCore.Repository
             }).ToList();
         }
 
+        public bool IsExists(string title)
+        {
+            return _masterBloggerContext.Articles.Any(x=>x.Title == title);
+        }
+
         public void Save()
         {
             _masterBloggerContext.SaveChanges();

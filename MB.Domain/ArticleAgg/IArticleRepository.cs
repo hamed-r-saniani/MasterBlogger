@@ -9,5 +9,6 @@ namespace MB.Domain.ArticleAgg
         void CreateAndSave(Article article);
         Article GetBy(long id);
         void Save();
+        bool IsExists(string title);
     }
 }
