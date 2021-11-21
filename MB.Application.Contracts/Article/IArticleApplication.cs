@@ -8,5 +8,7 @@ namespace MB.Application.Contracts.Article
         void Create(CreateArticleViewModel command);
         void Edit(EditArticleViewModel command);
         EditArticleViewModel GetBy(long id);
+        void Remove(long id);
+        void Activate(long id);
     }
 }
