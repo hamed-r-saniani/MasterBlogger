@@ -15,6 +15,20 @@ namespace MB.Infrastructure.Query
             _context = context;
         }
 
+        public ArticleQueryViewModel GetArticleBy(long id)
+        {
+            return _context.Articles.Include(x => x.ArticleCategory).Select(x => new ArticleQueryViewModel
+            {
+                Id = x.Id,
+                Title = x.Title,
+                CreationDate = x.CreationDate.ToString(CultureInfo.InvariantCulture),
+                ArticleCategory = x.ArticleCategory.Title,
+                Image = x.Image,
+                ShortDescription = x.ShortDescription,
+                Content = x.Content
+            }).FirstOrDefault(x=>x.Id == id);
+        }
+
         public List<ArticleQueryViewModel> GetArticles()
         {
             return _context.Articles.Include(x => x.ArticleCategory).Select(x => new ArticleQueryViewModel
