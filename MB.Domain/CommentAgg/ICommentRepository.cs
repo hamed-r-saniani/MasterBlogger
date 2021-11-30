@@ -7,5 +7,7 @@ namespace MB.Domain.CommentAgg
     {
         void Add(Comment comment);
         List<CommentViewModel> GetAll();
+        Comment GetBy(long id);
+        void Save();
     }
 }

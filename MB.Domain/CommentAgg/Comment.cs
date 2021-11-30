@@ -7,9 +7,9 @@ namespace MB.Domain.CommentAgg
     {
         protected Comment()
         {
-           
+
         }
-        public Comment(string name, string email, string message,long articleId)
+        public Comment(string name, string email, string message, long articleId)
         {
             Name = name;
             Email = email;
@@ -23,10 +23,12 @@ namespace MB.Domain.CommentAgg
         public string Name { get; private set; }
         public string Email { get; private set; }
         public string Message { get; private set; }
-        public int Status { get; private set; }//0 = New,1 = Confirmed,2 = Cancel
+        public int Status { get; private set; }d
         public DateTime CreationDate { get; private set; }
         public long ArticleId { get; private set; }
         public Article Article { get; private set; }
 
+        public void Confirm() => Status = Statuses.Confirmed;
+        public void Cancel() => Status = Statuses.Canceled;
     }
 }

@@ -18,7 +18,7 @@ namespace MB.Infrastructure.EFCore.Repository
         public void Add(Comment comment)
         {
             _context.Comments.Add(comment);
-            _context.SaveChanges();
+            Save();
         }
 
         public List<CommentViewModel> GetAll()
@@ -32,6 +32,16 @@ namespace MB.Infrastructure.EFCore.Repository
                 Message = _.Message,
                 Status = _.Status,
             }).ToList();
+        }
+
+        public Comment GetBy(long id)
+        {
+            return _context.Comments.FirstOrDefault(x=>x.Id == id);
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
         }
     }
 }
