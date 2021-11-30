@@ -26,7 +26,7 @@
                     <div class="d-flex align-items-center flex-wrap">
                         <div class="date">
                             <i class="icon-clock"></i> @Model.Article.CreationDate</div>
-                        <div class="comments meta-last"><i class="icon-comment"></i>12</div>
+                        <div class="comments meta-last"><i class="icon-comment"></i>@Model.Article.CommentsCount</div>
                     </div>
                 </div>
                 <div class="post-body">
@@ -39,9 +39,11 @@
 
                 <div class="post-comments">
                     <header>
-                        <h3 class="h6">Post Comments<span class="no-of-comments">4</span></h3>
+                        <h3 class="h6">Post Comments<span class="no-of-comments">@Model.Article.CommentsCount</span></h3>
                     </header>
                     
+                    @foreach(var item in @Model.Article.Comments)
+                    {
                         <div class="comment">
                             <div class="comment-header d-flex justify-content-between">
                                 <div class="user d-flex align-items-center">
@@ -49,15 +51,16 @@
                                         <img src="~/img/user.svg" alt="..." class="img-fluid rounded-circle">
                                     </div>
                                     <div class="title">
-                                        <strong>Jack</strong><span class="date">2020/01/01</span>
+                                        <strong>@item.Name</strong><span class="date">@item.CreationDate</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="comment-body">
-                                <p>I love This Post</p>
+                                <p>@item.Message</p>
                             </div>
                         </div>
-                    
+                    }
+
 
                 </div>
 
