@@ -1,4 +1,5 @@
-﻿using MB.Application.Contracts.Article;
+﻿using Framework.Infrastructure;
+using MB.Application.Contracts.Article;
 using MB.Domain.ArticleAgg;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -7,11 +8,11 @@ using System.Linq;
 
 namespace MB.Infrastructure.EFCore.Repository
 {
-    public class ArticleRepository : IArticleRepository
+    public class ArticleRepository :BaseRepository<long,Article>, IArticleRepository
     {
         private readonly MasterBloggerContext _masterBloggerContext;
 
-        public ArticleRepository(MasterBloggerContext masterBloggerContext)
+        public ArticleRepository(MasterBloggerContext masterBloggerContext) : base(masterBloggerContext)
         {
             _masterBloggerContext = masterBloggerContext;
         }
@@ -19,13 +20,9 @@ namespace MB.Infrastructure.EFCore.Repository
         public void CreateAndSave(Article article)
         {
             _masterBloggerContext.Articles.Add(article);
-            Save();
+            _masterBloggerContext.SaveChanges();
         }
 
-        public Article GetBy(long id)
-        {
-            return _masterBloggerContext.Articles.FirstOrDefault(x => x.Id == id);
-        }
 
         public List<ArticleViewModel> GetList()
         {
@@ -39,14 +36,5 @@ namespace MB.Infrastructure.EFCore.Repository
             }).ToList();
         }
 
-        public bool IsExists(string title)
-        {
-            return _masterBloggerContext.Articles.Any(x=>x.Title == title);
-        }
-
-        public void Save()
-        {
-            _masterBloggerContext.SaveChanges();
-        }
     }
 }

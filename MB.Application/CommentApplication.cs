@@ -23,19 +23,19 @@ namespace MB.Application
         {
             var comment = _commentRepository.GetBy(id);
             comment.Cancel();
-            _commentRepository.Save();
+            //_commentRepository.Save();
         }
 
         public void Confirm(long id)
         {
             var comment = _commentRepository.GetBy(id);
             comment.Confirm();
-            _commentRepository.Save();
+            //_commentRepository.Save();
         }
 
         public List<CommentViewModel> GetList()
         {
-            return _commentRepository.GetAll();
+            return _commentRepository.GetList();
         }
     }
 }

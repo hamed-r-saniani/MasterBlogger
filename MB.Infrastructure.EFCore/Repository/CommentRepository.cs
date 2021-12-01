@@ -1,4 +1,5 @@
-﻿using MB.Application.Contracts.Comment;
+﻿using Framework.Infrastructure;
+using MB.Application.Contracts.Comment;
 using MB.Domain.CommentAgg;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -6,22 +7,15 @@ using System.Linq;
 
 namespace MB.Infrastructure.EFCore.Repository
 {
-    public class CommentRepository : ICommentRepository
+    public class CommentRepository :BaseRepository<long,Comment>, ICommentRepository
     {
         private readonly MasterBloggerContext _context;
-
-        public CommentRepository(MasterBloggerContext context)
+        public CommentRepository(MasterBloggerContext context) : base(context)
         {
             _context = context;
         }
 
-        public void Add(Comment comment)
-        {
-            _context.Comments.Add(comment);
-            Save();
-        }
-
-        public List<CommentViewModel> GetAll()
+        public List<CommentViewModel> GetList()
         {
             return _context.Comments.Include(_ => _.Article).Select(_ => new CommentViewModel {
                 Id = _.Id,
@@ -34,14 +28,5 @@ namespace MB.Infrastructure.EFCore.Repository
             }).ToList();
         }
 
-        public Comment GetBy(long id)
-        {
-            return _context.Comments.FirstOrDefault(x=>x.Id == id);
-        }
-
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
     }
 }

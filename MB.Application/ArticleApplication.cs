@@ -17,7 +17,7 @@ namespace MB.Application
         {
             var article = _articleRepository.GetBy(id);
             article.Activated();
-            _articleRepository.Save();
+            //_articleRepository.Save();
         }
 
         public void Create(CreateArticleViewModel command)
@@ -30,7 +30,7 @@ namespace MB.Application
         {
             var article = _articleRepository.GetBy(command.Id);
             article.Edit(command.Title, command.ShortDescription,command.Image, command.Content,command.ArticleCategoryId);
-            _articleRepository.Save();
+            //_articleRepository.Save();
         }
 
         public EditArticleViewModel GetBy(long id)
@@ -56,7 +56,7 @@ namespace MB.Application
         {
             var article = _articleRepository.GetBy(id);
             article.Remove();
-            _articleRepository.Save();
+            //_articleRepository.Save();
         }
     }
 }

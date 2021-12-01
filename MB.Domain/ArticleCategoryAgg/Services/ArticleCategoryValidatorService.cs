@@ -13,7 +13,7 @@ namespace MB.Domain.ArticleCategoryAgg.Services
 
         public void CheckThatThisRecordAlreadyExist(string title)
         {
-            if (_articleCategoryRepository.CheckBy(title))
+            if (_articleCategoryRepository.IsExists(c=>c.Title == title))
                 throw new DuplicatedRecordException($"{title} Is Already Exists In Database");
         }
     }
